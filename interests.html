@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <link href="styles.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Maria</title>
+    </head>
+    <body>
+
+        <div id ="navigationBar">
+            <a class="navigationButton" href = "index.html"> Home </a>
+            <a class="navigationButton" href = "socials.html"> My socials </a>
+            <a class="navigationButton" href = "interests.html"> My interests </a>
+        </div>
+
+        <header class="nameBlock" >My interests :)</header>
+
+        <main>
+
+            <div class="container my-5">
+                
+                <div class="row g-4 mb-4">
+                    <div class="col-md-4">
+                        <div class="card interest-card h-100 p-3">
+                            <i class="bi bi-code-slash" style="font-size: 2rem;"></i>
+                            <div class="card-body">
+                                <h5 class="card-title">Programming</h5>
+                                <p class="card-text">I am currently a Cybersecurity undergrad. Alongside my studies, you can usually find me suffering on LeetCode, picking up any online course that seems interesting enough, or working on fun projects that (usually) no one else cares about. Follow along on my journey!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card interest-card h-100 p-3">
+                            <i class="bi bi-hourglass-split" style="font-size: 2rem;"></i>
+                            <div class="card-body">
+                                <h5 class="card-title">History</h5>
+                                <p class="card-text">I was a huge history nerd in high school; as a kid, I had specific fixations on figures such as Genghis Khan, Mansa Musa, Ibn Battuta, and Hypatia, to name a few. Of course, I’ve simmered down since high school, but I still won't turn down an opportunity to go on a history tangent. You’ll occasionally find me lost in a history podcast or book (I highly recommend "How to Take Over the World").</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card interest-card h-100 p-3">
+                            <i class="bi bi-person-arms-up" style="font-size: 2rem;"></i>
+                            <div class="card-body">
+                                <h5 class="card-title">Fitness</h5>
+                                <p class="card-text">My current obsession is running. By the end of 2026, I hope to run 5km in under 20 minutes. Over the years, I’ve gone through many phases: swimming, gymnastics, weightlifting, and badminton. However, my favorite phase was inline skating. My father bought me my first pair in Grade 5, and some of my fondest memories are of skating with him as a child. Suffice it to say, there’s a bit of everything, and I plan to pick up even more in the future!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row g-4 mb-4">
+                    <div class="col-md-4">
+                        <div class="card interest-card h-100 p-3">
+                            <i class="bi bi-eye" style="font-size: 2rem;"></i>
+                            <div class="card-body">
+                                <h5 class="card-title">Distopian Novels</h5>
+                                <p class="card-text">This interest is a side effect of my interest in history. My top three are Brave New World, 1984 (the og!!), and Fahrenheit 451. I can’t fully explain why I am so drawn to this genre, but something about imagining a world that seems so horrifying, yet probable at the same time, sets off fireworks in my mind. I’d recommend reading any of the three I mentioned— trust, it’s worth it!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card interest-card h-100 p-3">
+                            <i class="bi bi-chat-quote debate-icon" style="font-size: 2rem;"></i>
+                            <div class="card-body">
+                                <h5 class="card-title">Discourse and Debate</h5>
+                                <p class="card-text">Another side effect of my interest in history: I was notorious for debating in high school. I even founded a club named the "Socratic Society" (no, I was not aware of Oxford’s version when deciding on the name!). I served as president for two years, planning and participating in some of the most interesting and memorable debates of my life. If any of my old members are reading this—I remember and miss each of you!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card interest-card h-100 p-3">
+                            <i class="bi bi-scissors" style="font-size: 2rem;"></i>
+                            <div class="card-body">
+                                <h5 class="card-title">Crochet</h5>
+                                <p class="card-text">As you might have seen on my socials page, I enjoy crocheting. Sometimes my academics and daily life take a toll on me, and I find that crochet helps me take a step back and relax. My mind needs a break sometimes! Plus, they make for incredible gifts. : )</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <section class="container mt-5 text-center">
+                <h3>Found the secret flag?</h3>
+                <input autocomplete="off" type="text" id="secretInput" placeholder="Enter flag here..." class="form-control d-inline-block w-auto">
+                <button onclick="checkFlag()" class="btn btn-dark">Submit</button>
+                <div id="secretContent" class="mt-4"></div>
+            </section>
+
+        </main>
+
+        
+        <footer>
+            <div class="footerLinks">
+                <a href="https://github.com/mariaezzi" target="_blank"><i class="bi bi-github"></i></a>
+                <a href="https://www.instagram.com/mariaezzi786?igsh=MXd4Y24wbDhsbXYyeA%3D%3D&utm_source=qr"  target="_blank"><i class="bi bi-instagram"></i></a>
+                <a href="mailto:mariaezzi1210@gmail.com"  target="_blank"><i class="bi bi-envelope-at"></i></a>
+            </div>
+        </footer>
+        
+        <script src="script.js"></script>
+
+    </body>
+</html>

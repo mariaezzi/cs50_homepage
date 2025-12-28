@@ -1,0 +1,232 @@
+
+.nameBlock{
+    background: #3B4953;
+    width: 100%;
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #EBF4DD;
+    font-size: 30px;
+    font-family: Papyrus;
+    z-index: 90;
+}
+
+#navigationBar{
+    width: 100%;
+    height: 7vh;
+    position: sticky;
+    top: 0px;
+    display: flex;
+    z-index: 100;
+}
+
+.navigationButton{
+    flex: 1; /* This tells each box to grow equally to fill the full width */
+    height: 100%; /* Makes the boxes fill the 10vh height of the bar */
+    border: 5px solid #3B4953;
+    font-size: 15px;
+    display: flex;
+    align-items: center; /* Centers text vertically */
+    justify-content: center; /* Centers text horizontally */
+    background: #5A7863;
+    border-radius: 0px;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    color: #EBF4DD;
+    font-family: Papyrus;
+    z-index: 100;
+
+}
+.navigationButton:hover{
+    background-color: #EBF4DD;
+    color: black;
+}
+
+#photoBlock {
+    display: flex;           /* Puts imageColumn and photoDescription side-by-side */
+    flex-direction: row;     /* Horizontal layout */
+    justify-content: center; /* Forces the whole thing to the center */
+    align-items: flex-start; /* Keeps items at the top of the container */
+    gap: 30px;               /* Space between photo and description text */
+}
+
+#imageColumn {
+    display: flex;
+    flex-direction: column;  /* Stacks image and "Thats me" text vertically */
+    align-items: flex-start; /* Aligns image and text to the LEFT within the column */
+    flex-shrink: 0;
+}
+
+#imageColumn img {
+    padding: 5px;
+    display: block;
+}
+
+#photoBlockText {
+    font-family: "Papyrus", sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    color: #333;         
+    margin-top: 5px;
+    padding-left: 5px;      /* Matches the image padding so it aligns perfectly */
+    word-wrap: break-word;
+    width: 270px;
+}
+
+#photoDescription {
+    max-width: 400px;
+    font-family: "Papyrus", sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+body {
+    background: #90AB8B;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "Papyrus", sans-serif;
+}
+
+footer {
+    background-color: #A8BBA3;
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto; /* This pushes the footer to the bottom */
+
+}
+
+.footerLinks {
+    display: flex;
+    width: 100%;
+    /* This makes the gap on the edges the same as the gap between icons */
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.footerLinks a i {
+    font-size: 30px;
+    text-decoration: none;
+    color: #333333;        
+    transition: 0.3s;      /* Makes hover effects smooth */
+}
+
+.footerLinks a i:hover {
+    color: #004225;        /* Turns Bottle Green on hover */
+}
+
+
+/* SOCIALS PAGE STYLING */
+
+/* Base style for all containers (alternating layout) */
+.social-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px;
+    gap: 50px;
+    margin-bottom: 40px;
+}
+
+/* Flip every second section (right to left) */
+.social-container:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+/* The iframe section */
+.iframe-box {
+    flex-shrink: 0; /* Prevents iframe from shrinking */
+}
+
+.iframe-box iframe {
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* The text and cubes section */
+.social-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1; /* Takes remaining space */
+}
+
+.social-info h3 {
+    font-size: 1.8em;
+    color: #272626;
+    margin-bottom: 10px;
+    font-weight: 300;
+
+}
+
+.social-info div {
+    font-size: 1.1em;
+    color: #272626;
+    line-height: 1.6;
+    font-weight: 550;    
+}
+
+/* Right-align text for sections that start from the right */
+.social-container:nth-child(even) .social-info {
+    text-align: right;
+}
+
+/* The Cube Gallery */
+.cube-gallery {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.cube {
+    width: 85px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.cube:hover {
+    transform: scale(2.5);
+    z-index: 10;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* Align the cubes to the right for sections that start from the right */
+.social-container:nth-child(even) .cube-gallery {
+    justify-content: flex-end;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .social-container {
+        flex-direction: column !important;
+        padding: 30px;
+    }
+
+    .social-info {
+        text-align: center;
+    }
+}
+
+/* INTERESTS PAGE STYLING */
+
+.interest-card {
+    transition: transform 0.3s;
+    background: #EBF4DD;
+    border: 2px solid #3B4953;
+}
+
+.interest-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
