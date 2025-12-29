@@ -14,7 +14,7 @@
 
 #navigationBar{
     width: 100%;
-    height: 7vh;
+    height: 9vh;
     position: sticky;
     top: 0px;
     display: flex;
@@ -25,7 +25,7 @@
     flex: 1; /* This tells each box to grow equally to fill the full width */
     height: 100%; /* Makes the boxes fill the 10vh height of the bar */
     border: 5px solid #3B4953;
-    font-size: 15px;
+    font-size: 18px;
     display: flex;
     align-items: center; /* Centers text vertically */
     justify-content: center; /* Centers text horizontally */
@@ -49,6 +49,8 @@
     justify-content: center; /* Forces the whole thing to the center */
     align-items: flex-start; /* Keeps items at the top of the container */
     gap: 30px;               /* Space between photo and description text */
+    padding: 20px; /* Add some padding */
+
 }
 
 #imageColumn {
@@ -56,11 +58,15 @@
     flex-direction: column;  /* Stacks image and "Thats me" text vertically */
     align-items: flex-start; /* Aligns image and text to the LEFT within the column */
     flex-shrink: 0;
+    width: 30%; /* Takes up 30% of width */
+    max-width: 270px; /* But never bigger than 270px */    
 }
 
 #imageColumn img {
     padding: 5px;
     display: block;
+    width: 100%; /* Makes image responsive within its column */
+    height: auto;
 }
 
 #photoBlockText {
@@ -71,15 +77,36 @@
     margin-top: 5px;
     padding-left: 5px;      /* Matches the image padding so it aligns perfectly */
     word-wrap: break-word;
-    width: 270px;
+    width: 100%; /* Takes full width of its column */
 }
 
 #photoDescription {
+    width: 40%; /* Takes up 40% of width */
     max-width: 400px;
     font-family: "Papyrus", sans-serif;
     font-size: 15px;
     font-weight: bold;
     color: #333;
+}
+
+/* Mobile responsive - stack vertically on small screens */
+@media (max-width: 768px) {
+    #photoBlock {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #imageColumn {
+        width: 80%; /* Bigger on mobile */
+        max-width: 270px;
+        align-items: center; /* Center the image on mobile */
+    }
+    
+    #photoDescription {
+        width: 90%; /* Takes most of the width on mobile */
+        max-width: none;
+        text-align: center; /* Center text on mobile */
+    }
 }
 
 body {
