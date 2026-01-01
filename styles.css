@@ -216,14 +216,23 @@ footer {
     object-fit: cover;
     border-radius: 8px;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
-    /* Prevent videos from expanding on mobile */
     max-width: 85px;
     max-height: 120px;
 }
 
-.cube:hover {
+/* Desktop hover effect */
+@media (hover: hover) {
+    .cube:hover {
+        transform: scale(2.5);
+        z-index: 10;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+}
+
+/* Mobile tap effect - when video has 'expanded' class */
+.cube.expanded {
     transform: scale(2.5);
     z-index: 10;
     box-shadow: 0 10px 20px rgba(0,0,0,0.3);
@@ -234,7 +243,7 @@ footer {
     justify-content: flex-end;
 }
 
-/* Mobile-specific fixes */
+/* Mobile-specific adjustments */
 @media (max-width: 768px) {
     .social-container {
         flex-direction: column !important;
@@ -245,31 +254,32 @@ footer {
         text-align: center;
     }
 
-    /* Prevent video expansion on mobile */
-    .cube {
+    /* Ensure videos stay contained when not expanded */
+    .cube:not(.expanded) {
         width: 85px;
         height: 120px;
-        /* Disable hover effects on mobile to prevent accidental scaling */
-        pointer-events: auto;
     }
     
-    /* Disable scale on mobile - use tap instead */
-    .cube:hover {
-        transform: none;
-    }
-    
-    /* Add active state for mobile taps */
-    .cube:active {
-        transform: scale(1.1);
-        z-index: 10;
-    }
-    
-    /* Ensure videos stay contained */
+    /* Ensure videos display properly */
     .cube-gallery video {
         display: block;
-        width: 85px !important;
-        height: 120px !important;
         object-fit: cover;
+    }
+    
+    /* Create overlay to help tap anywhere to close */
+    .video-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 9;
+        display: none;
+    }
+    
+    .video-overlay.active {
+        display: block;
     }
 }
 /* INTERESTS PAGE STYLING */

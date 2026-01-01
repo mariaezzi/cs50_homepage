@@ -1,28 +1,75 @@
-// Detect if device is mobile
-const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+// Detect if device is mobile/touch
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || 
+                 ('ontouchstart' in window);
 
 // for the socials page
 const videos = document.querySelectorAll('video.cube');
+let currentExpandedVideo = null;
+
+// Create overlay for mobile (helps with closing expanded videos)
+if (isMobile) {
+    const overlay = document.createElement('div');
+    overlay.className = 'video-overlay';
+    document.body.appendChild(overlay);
+    
+    overlay.addEventListener('click', () => {
+        if (currentExpandedVideo) {
+            closeExpandedVideo();
+        }
+    });
+}
+
+function closeExpandedVideo() {
+    if (currentExpandedVideo) {
+        currentExpandedVideo.classList.remove('expanded');
+        currentExpandedVideo.muted = true;
+        currentExpandedVideo.currentTime = 0;
+        currentExpandedVideo = null;
+        
+        // Hide overlay
+        const overlay = document.querySelector('.video-overlay');
+        if (overlay) {
+            overlay.classList.remove('active');
+        }
+    }
+}
 
 if (isMobile) {
-    // Mobile behavior: tap to play/pause
+    // Mobile behavior: tap to expand and play with sound
     videos.forEach(video => {
-        // Ensure videos are muted on mobile (required for autoplay)
+        // Ensure videos are muted initially and play inline
         video.muted = true;
-        video.playsInline = true; // Prevent fullscreen on iOS
+        video.playsInline = true;
         
-        // Add tap to play/pause functionality
         video.addEventListener('click', function(e) {
-            e.preventDefault();
-            if (video.paused) {
-                video.play();
+            e.stopPropagation(); // Prevent event bubbling
+            
+            // If this video is already expanded, close it
+            if (currentExpandedVideo === video) {
+                closeExpandedVideo();
             } else {
-                video.pause();
+                // Close any other expanded video first
+                if (currentExpandedVideo) {
+                    closeExpandedVideo();
+                }
+                
+                // Expand this video
+                video.classList.add('expanded');
+                video.muted = false;
+                video.currentTime = 0;
+                video.play();
+                currentExpandedVideo = video;
+                
+                // Show overlay
+                const overlay = document.querySelector('.video-overlay');
+                if (overlay) {
+                    overlay.classList.add('active');
+                }
             }
         });
     });
 } else {
-    // Desktop behavior: hover to unmute
+    // Desktop behavior: hover to expand and unmute
     videos.forEach(video => {
         video.addEventListener('mouseenter', () => {
             video.muted = false;
