@@ -168,7 +168,7 @@ footer {
 
 /* The iframe section */
 .iframe-box {
-    flex-shrink: 0; /* Prevents iframe from shrinking */
+    flex-shrink: 0;
 }
 
 .iframe-box iframe {
@@ -181,7 +181,7 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    flex: 1; /* Takes remaining space */
+    flex: 1;
 }
 
 .social-info h3 {
@@ -189,7 +189,6 @@ footer {
     color: #272626;
     margin-bottom: 10px;
     font-weight: 300;
-
 }
 
 .social-info div {
@@ -219,6 +218,9 @@ footer {
     cursor: pointer;
     transition: transform 0.3s ease;
     position: relative;
+    /* Prevent videos from expanding on mobile */
+    max-width: 85px;
+    max-height: 120px;
 }
 
 .cube:hover {
@@ -232,7 +234,7 @@ footer {
     justify-content: flex-end;
 }
 
-/* Responsive design */
+/* Mobile-specific fixes */
 @media (max-width: 768px) {
     .social-container {
         flex-direction: column !important;
@@ -242,8 +244,34 @@ footer {
     .social-info {
         text-align: center;
     }
-}
 
+    /* Prevent video expansion on mobile */
+    .cube {
+        width: 85px;
+        height: 120px;
+        /* Disable hover effects on mobile to prevent accidental scaling */
+        pointer-events: auto;
+    }
+    
+    /* Disable scale on mobile - use tap instead */
+    .cube:hover {
+        transform: none;
+    }
+    
+    /* Add active state for mobile taps */
+    .cube:active {
+        transform: scale(1.1);
+        z-index: 10;
+    }
+    
+    /* Ensure videos stay contained */
+    .cube-gallery video {
+        display: block;
+        width: 85px !important;
+        height: 120px !important;
+        object-fit: cover;
+    }
+}
 /* INTERESTS PAGE STYLING */
 
 .interest-card {

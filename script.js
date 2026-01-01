@@ -1,37 +1,63 @@
+// Detect if device is mobile
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
 // for the socials page
 const videos = document.querySelectorAll('video.cube');
-videos.forEach(video => {
-    video.addEventListener('mouseenter', () => {
-        video.muted = false;  // Unmute when hovering
-        video.currentTime = 0;
-    });
 
-    video.addEventListener('mouseleave', () => {
-        video.muted = true;   // Mute again when leaving
+if (isMobile) {
+    // Mobile behavior: tap to play/pause
+    videos.forEach(video => {
+        // Ensure videos are muted on mobile (required for autoplay)
+        video.muted = true;
+        video.playsInline = true; // Prevent fullscreen on iOS
+        
+        // Add tap to play/pause functionality
+        video.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        });
     });
-});
+} else {
+    // Desktop behavior: hover to unmute
+    videos.forEach(video => {
+        video.addEventListener('mouseenter', () => {
+            video.muted = false;
+            video.currentTime = 0;
+            video.play();
+        });
 
+        video.addEventListener('mouseleave', () => {
+            video.muted = true;
+        });
+    });
+}
 
 // for the home page 
 const image = document.getElementById('profilePic');
-image.addEventListener('click', function(e) {
-    if (image.src.includes("my_photo.jpeg")) {
-        image.src = "media/my_boi.jpg";
-        image.title = "It's the boi!";
+if (image) {
+    image.addEventListener('click', function(e) {
+        if (image.src.includes("my_photo.jpeg")) {
+            image.src = "media/my_boi.jpg";
+            image.title = "It's the boi!";
 
-        document.getElementById("photoBlockText").innerHTML = `
-            <div> Its Genghis Khan! he kinda happens to be one of my favorite historical figures.</div>
-            <div> Your flag is : "{T3muj1n_th3_g0@t}".</div>
-            <div> Submit this at the interests page for a surprise.</div>
-            <div> Now click the photo again!! </div>`;
-    }
-    else {
-        image.src = "media/my_photo.jpeg";
-        image.title = "DONT CLICK!!";
+            document.getElementById("photoBlockText").innerHTML = `
+                <div> Its Genghis Khan! he kinda happens to be one of my favorite historical figures.</div>
+                <div> Your flag is : "{T3muj1n_th3_g0@t}".</div>
+                <div> Submit this at the interests page for a surprise.</div>
+                <div> Now click the photo again!! </div>`;
+        }
+        else {
+            image.src = "media/my_photo.jpeg";
+            image.title = "DONT CLICK!!";
 
-        document.getElementById("photoBlockText").innerHTML = `<div>Here I amm </div>`;
-    }
-});
+            document.getElementById("photoBlockText").innerHTML = `<div>Here I amm </div>`;
+        }
+    });
+}
 
 function checkFlag () {
     let userAns = document.getElementById("secretInput").value.trim();
