@@ -1,4 +1,6 @@
 
+/*------------------------------- INDEX PAGE STYLING -------------------------------*/
+
 .nameBlock{
     background: #3B4953;
     width: 100%;
@@ -117,11 +119,11 @@ footer {
 }
 
 .footerLinks a i:hover {
-    color: #004225;        /* Turns Bottle Green on hover */
+    color: #054529;        /* Turns Bottle Green on hover */
 }
 
 
-/* SOCIALS PAGE STYLING */
+/*------------------------------- SOCIALS PAGE STYLING -------------------------------*/
 
 /* Base style for all containers (alternating layout) */
 .social-container {
@@ -162,7 +164,7 @@ footer {
     color: #272626;
     margin-bottom: 10px;
     font-weight: 300;
-
+    
 }
 
 .social-info div {
@@ -217,7 +219,8 @@ footer {
     }
 }
 
-/* INTERESTS PAGE STYLING */
+
+/*------------------------------- INTERESTS PAGE STYLING -------------------------------*/
 
 .interest-card {
     transition: transform 0.3s;
