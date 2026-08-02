@@ -31,11 +31,6 @@ cubes.forEach(cube => {
     cube.addEventListener('click', () => {
         if (!isMobileView()) return; // desktop uses hover
 
-        // disable autoplay 
-        document.querySelectorAll('video').forEach(video => {
-        video.autoplay = false;
-        });
-
         const isActive = cube.classList.contains('cube-active');
 
         if (isActive) {
