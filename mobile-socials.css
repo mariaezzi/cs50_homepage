@@ -1,0 +1,31 @@
+/*-------------------------------------------------------------
+  MOBILE / TABLET ONLY STYLES — SOCIALS PAGE
+  This file is loaded ONLY when the viewport is <= 768px wide
+  (see the <link media="(max-width: 768px)"> tag in socials.html).
+---------------------------------------------------------------*/
+
+/* Center the cube galleries instead of the alternating
+   left/right layout used on desktop (styles.css already
+   stacks the containers into a column below 768px, this
+   just finishes the job for the gallery itself) */
+.cube-gallery,
+.social-container:nth-child(even) .cube-gallery {
+    justify-content: center;
+}
+
+/* Kill the desktop hover-zoom entirely on touch devices.
+   Hover states can get "stuck" after a tap on mobile,
+   so we explicitly zero it out. */
+.cube:hover {
+    transform: none;
+    box-shadow: none;
+    z-index: auto;
+}
+
+/* This class is toggled on/off via JS when a cube is tapped.
+   Feel free to tweak the scale value once you settle on a ratio. */
+.cube.cube-active {
+    transform: scale(1.15);
+    z-index: 10;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}

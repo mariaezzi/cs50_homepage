@@ -1,13 +1,49 @@
 // for the socials page
-const videos = document.querySelectorAll('video.cube');
-videos.forEach(video => {
-    video.addEventListener('mouseenter', () => {
-        video.muted = false;  // Unmute when hovering
-        video.currentTime = 0;
-    });
 
-    video.addEventListener('mouseleave', () => {
-        video.muted = true;   // Mute again when leaving
+// Matches the 768px breakpoint used in the CSS media queries,
+// so JS and CSS always agree on what counts as "mobile/tablet".
+const isMobileView = () => window.matchMedia('(max-width: 768px)').matches;
+
+const cubes = document.querySelectorAll('.cube'); // covers both videos and images
+
+cubes.forEach(cube => {
+    // ---- DESKTOP behavior: hover to unmute/restart video ----
+    if (cube.tagName === 'VIDEO') {
+        cube.addEventListener('mouseenter', () => {
+            if (isMobileView()) return; // hover is disabled on mobile/tablet
+            cube.muted = false;
+            cube.currentTime = 0;
+        });
+
+        cube.addEventListener('mouseleave', () => {
+            if (isMobileView()) return;
+            cube.muted = true;
+        });
+    }
+
+    // ---- MOBILE/TABLET behavior: tap to expand (+ play audio for videos) ----
+    cube.addEventListener('click', () => {
+        if (!isMobileView()) return; // desktop only uses hover, ignore taps
+
+        const wasActive = cube.classList.contains('cube-active');
+
+        // Collapse every other cube first so only one is expanded at a time
+        cubes.forEach(c => {
+            c.classList.remove('cube-active');
+            if (c.tagName === 'VIDEO') {
+                c.muted = true;
+            }
+        });
+
+        // If it wasn't already open, open this one
+        if (!wasActive) {
+            cube.classList.add('cube-active');
+            if (cube.tagName === 'VIDEO') {
+                cube.muted = false;
+                cube.currentTime = 0; // play from the beginning
+                cube.play();
+            }
+        }
     });
 });
 
