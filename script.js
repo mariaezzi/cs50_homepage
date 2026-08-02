@@ -4,12 +4,6 @@
 // so JS and CSS always agree on what counts as "mobile/tablet".
 const isMobileView = () => window.matchMedia('(max-width: 768px)').matches;
 
-if (isMobileView) {
-    // disable autoplay 
-    document.querySelectorAll('video').forEach(video => {
-    video.autoplay = false;
-    });
-}
 
 
 const cubes = document.querySelectorAll('.cube'); // covers both videos and images
