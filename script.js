@@ -4,6 +4,14 @@
 // so JS and CSS always agree on what counts as "mobile/tablet".
 const isMobileView = () => window.matchMedia('(max-width: 768px)').matches;
 
+if (isMobileView) {
+    // disable autoplay 
+    document.querySelectorAll('video').forEach(video => {
+    video.autoplay = false;
+    });
+}
+
+
 const cubes = document.querySelectorAll('.cube'); // covers both videos and images
 const cubeVideos = document.querySelectorAll('video.cube');
 
@@ -11,9 +19,6 @@ const cubeVideos = document.querySelectorAll('video.cube');
 cubes.forEach(cube => {
     // ---- DESKTOP behavior: hover to unmute/restart video ----
     if (cube.tagName === 'VIDEO') {
-        document.querySelectorAll('video').forEach(video => {
-        video.autoplay = true;
-        });
 
         cube.addEventListener('mouseenter', () => {
             if (isMobileView()) return; // hover is disabled on mobile/tablet
@@ -25,38 +30,38 @@ cubes.forEach(cube => {
         cube.addEventListener('mouseleave', () => {
             if (isMobileView()) return;
             cube.muted = true;
-            document.querySelectorAll('video').forEach(video => {
-            video.autoplay = true;
-            });
-
         });
     }
 
-    // ---- MOBILE/TABLET behavior: tap to expand + play (audio for videos) ----
+    // ---- MOBILE/TABLET behavior: tap to toggle active/play state ----
     cube.addEventListener('click', () => {
-        if (!isMobileView()) return; // desktop only uses hover, ignore taps
+        if (!isMobileView()) return; // desktop uses hover
 
-        const wasActive = cube.classList.contains('cube-active');
-
-        // Collapse every other cube first so only one is expanded/playing at a time
-        cubes.forEach(c => {
-            c.classList.remove('cube-active');
-            if (c.tagName === 'VIDEO') {
-                c.muted = true;
-                c.pause(); // fully stop, not just mute
-            }
+        // disable autoplay 
+        document.querySelectorAll('video').forEach(video => {
+        video.autoplay = false;
         });
 
-        // If it wasn't already open, open this one
-        if (!wasActive) {
+        const isActive = cube.classList.contains('cube-active');
+
+        if (isActive) {
+            // If already active: deactivate, pause, and mute
+            cube.classList.remove('cube-active');
+            if (cube.tagName === 'VIDEO') {
+                cube.muted = true;
+                cube.pause();
+            }
+        } else {
+            // If not active: make active, un-mute, and play from start
             cube.classList.add('cube-active');
             if (cube.tagName === 'VIDEO') {
                 cube.muted = false;
-                cube.currentTime = 0; // play from the beginning
+                cube.currentTime = 0;
                 cube.play();
             }
         }
     });
+
 });
 
 
