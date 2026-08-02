@@ -5,6 +5,27 @@
 const isMobileView = () => window.matchMedia('(max-width: 768px)').matches;
 
 const cubes = document.querySelectorAll('.cube'); // covers both videos and images
+const cubeVideos = document.querySelectorAll('video.cube');
+
+// Ambient loop only runs on desktop. On mobile/tablet, videos sit paused
+// on their first frame until tapped — no autoplay attribute is used at all,
+// so this is the ONLY place playback starts on desktop.
+function setInitialPlaybackState() {
+    cubeVideos.forEach(video => {
+        if (isMobileView()) {
+            video.pause(); // stay paused until tapped
+        } else {
+            video.muted = true;
+            video.play().catch(() => {}); // browsers can reject autoplay-ish calls; ignore
+        }
+    });
+}
+
+setInitialPlaybackState();
+
+// Re-check whenever the viewport crosses the 768px breakpoint
+// (window resize, or rotating a tablet)
+window.addEventListener('resize', setInitialPlaybackState);
 
 cubes.forEach(cube => {
     // ---- DESKTOP behavior: hover to unmute/restart video ----
@@ -21,17 +42,18 @@ cubes.forEach(cube => {
         });
     }
 
-    // ---- MOBILE/TABLET behavior: tap to expand (+ play audio for videos) ----
+    // ---- MOBILE/TABLET behavior: tap to expand + play (audio for videos) ----
     cube.addEventListener('click', () => {
         if (!isMobileView()) return; // desktop only uses hover, ignore taps
 
         const wasActive = cube.classList.contains('cube-active');
 
-        // Collapse every other cube first so only one is expanded at a time
+        // Collapse every other cube first so only one is expanded/playing at a time
         cubes.forEach(c => {
             c.classList.remove('cube-active');
             if (c.tagName === 'VIDEO') {
                 c.muted = true;
+                c.pause(); // fully stop, not just mute
             }
         });
 
