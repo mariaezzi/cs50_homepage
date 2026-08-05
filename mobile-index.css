@@ -1,0 +1,32 @@
+/*-------------------------------------------------------------
+  MOBILE / TABLET ONLY STYLES — HOME PAGE
+  This file is loaded ONLY when the viewport is <= 768px wide
+  (see the <link media="(max-width: 768px)"> tag in index.html).
+  It never touches or overrides desktop behavior.
+---------------------------------------------------------------*/
+
+/* Stack image -> photoBlockText -> photoDescription vertically
+   instead of side-by-side. The HTML order already gives us
+   this exact order once it's a column, since #imageColumn
+   (which contains the image + photoBlockText) comes before
+   #photoDescription in the markup. */
+#photoBlock {
+    flex-direction: column;
+    align-items: center;
+}
+
+#imageColumn {
+    align-items: center; /* center the image + "Thats me!" text */
+}
+
+#photoBlockText {
+    text-align: center;
+    width: auto;
+    max-width: 300px;
+}
+
+#photoDescription {
+    max-width: 90%;
+    text-align: center;
+    padding: 0 20px;
+}

@@ -75,10 +75,12 @@ document.addEventListener('click', (e) => {
     }
 });
 
+// ===============================================================================================================================
+
 // for the home page 
 const image = document.getElementById('profilePic');
 image.addEventListener('click', function(e) {
-    if (image.src.includes("my_photo.jpeg")) {
+    if (image.src.includes("maria.jpeg")) {
         image.src = "media/my_boi.jpg";
         image.title = "It's the boi!";
 
@@ -89,7 +91,7 @@ image.addEventListener('click', function(e) {
             <div> Now click the photo again!! </div>`;
     }
     else {
-        image.src = "media/my_photo.jpeg";
+        image.src = "media/maria.jpeg";
         image.title = "DONT CLICK!!";
 
         document.getElementById("photoBlockText").innerHTML = `<div>Here I amm </div>`;

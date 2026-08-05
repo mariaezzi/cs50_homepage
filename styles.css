@@ -78,8 +78,8 @@
 #photoDescription {
     max-width: 400px;
     font-family: "Papyrus", sans-serif;
-    font-size: 15px;
-    font-weight: bold;
+    font-size: 17px;
+    /*font-weight: bold;*/
     color: #333;
 }
 
