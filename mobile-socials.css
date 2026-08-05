@@ -30,7 +30,7 @@
 /* This class is toggled on/off via JS when a cube is tapped.
    Feel free to tweak the scale value once you settle on a ratio. */
 .cube.cube-active {
-    transform: scale(1.7);
+    transform: scale(1.8);
     z-index: 10;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
