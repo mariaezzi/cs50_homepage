@@ -9,8 +9,13 @@
    stacks the containers into a column below 768px, this
    just finishes the job for the gallery itself) */
 .cube-gallery,
-.social-container:nth-child(even) .cube-gallery {
+.social-container .cube-gallery {
     justify-content: center;
+    align-items: center;
+}
+
+.social-info {
+    align-items: center;
 }
 
 /* Kill the desktop hover-zoom entirely on touch devices.

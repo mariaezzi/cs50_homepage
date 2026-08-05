@@ -4,11 +4,17 @@
 // so JS and CSS always agree on what counts as "mobile/tablet".
 const isMobileView = () => window.matchMedia('(max-width: 768px)').matches;
 
-
-
 const cubes = document.querySelectorAll('.cube'); // covers both videos and images
 const cubeVideos = document.querySelectorAll('video.cube');
 
+function closeAll() {
+    cubes.forEach(photo => photo.classList.remove('cube-active'));
+    cubeVideos.forEach(vid => {
+        vid.classList.remove('cube-active');
+        vid.muted = true;
+        vid.pause();
+    });
+}
 
 cubes.forEach(cube => {
     // ---- DESKTOP behavior: hover to unmute/restart video ----
@@ -28,8 +34,11 @@ cubes.forEach(cube => {
     }
 
     // ---- MOBILE/TABLET behavior: tap to toggle active/play state ----
-    cube.addEventListener('click', () => {
+    cube.addEventListener('click', (e) => {
         if (!isMobileView()) return; // desktop uses hover
+    
+        // Prevent this tap from immediately triggering the document click handler
+        e.stopPropagation();
 
         const isActive = cube.classList.contains('cube-active');
 
@@ -42,6 +51,8 @@ cubes.forEach(cube => {
             }
         } else {
             // If not active: make active, un-mute, and play from start
+            // first close anything open from before
+            closeAll();
             cube.classList.add('cube-active');
             if (cube.tagName === 'VIDEO') {
                 cube.muted = false;
@@ -53,6 +64,16 @@ cubes.forEach(cube => {
 
 });
 
+
+// Close active elements when tapping anywhere outside on mobile/tablet
+document.addEventListener('click', (e) => {
+    if (!isMobileView()) return;
+
+    // Check if click was outside any active cube
+    if (!e.target.closest('.cube-active')) {
+        closeAll();
+    }
+});
 
 // for the home page 
 const image = document.getElementById('profilePic');
