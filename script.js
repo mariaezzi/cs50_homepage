@@ -47,7 +47,6 @@ cubes.forEach(cube => {
             cube.classList.remove('cube-active');
             if (cube.tagName === 'VIDEO') {
                 cube.muted = true;
-                cube.pause();
             }
         } else {
             // If not active: make active, un-mute, and play from start
