@@ -12,7 +12,7 @@ function closeAll() {
     cubeVideos.forEach(vid => {
         vid.classList.remove('cube-active');
         vid.muted = true;
-        vid.pause();
+        vid.autoplay = true;
     });
 }
 
