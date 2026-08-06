@@ -43,7 +43,7 @@ cubes.forEach(cube => {
         const isActive = cube.classList.contains('cube-active');
 
         if (isActive) {
-            // If already active: deactivate, pause, and mute
+            // If already active: deactivate, and mute
             cube.classList.remove('cube-active');
             if (cube.tagName === 'VIDEO') {
                 cube.muted = true;
@@ -54,9 +54,8 @@ cubes.forEach(cube => {
             closeAll();
             cube.classList.add('cube-active');
             if (cube.tagName === 'VIDEO') {
-                cube.muted = false;
                 cube.currentTime = 0;
-                cube.play();
+                cube.muted = false;
             }
         }
     });
